@@ -21,23 +21,12 @@ export class UserService {
     asc: true,
   });
 
-  userList$ = combineLatest([
-    this.getUsers(),
-    this.sortBy$
-  ]).pipe(
+  userList$ = combineLatest([this.getUsers(), this.sortBy$]).pipe(
     map(([data, sort]) => {
-      return [...data].sort((a, b) => {
-        const aValue = a[sort.key as keyof IUserData];
-        const bValue = b[sort.key as keyof IUserData];
-
-        if (aValue === bValue) return 0;
-
-        if (sort.asc) {
-          return aValue > bValue ? 1 : -1;
-        } else {
-          return aValue < bValue ? 1 : -1;
-        }
-      });
+      return [...data].sort(
+        (a, b) =>
+          (a[sort.key as keyof IUserData] < b[sort.key as keyof IUserData] ? 1 : -1) * (sort.asc ? -1 : 1),
+      );
     }),
   );
 }

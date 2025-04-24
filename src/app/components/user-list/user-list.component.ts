@@ -7,7 +7,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
-  imports: [ AsyncPipe, SortOrderIndicatorPipe],
+  imports: [AsyncPipe, SortOrderIndicatorPipe],
 })
 export class UserListComponent {
   private readonly userService = inject(UserService);
