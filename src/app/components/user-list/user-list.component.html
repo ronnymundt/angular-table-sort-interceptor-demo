@@ -1,0 +1,60 @@
+<h1>Angular Table Sort + Interceptor Demo</h1>
+<hr />
+<table>
+  <thead>
+    <th (click)="onSortClick('id')">
+      <div>
+        <span>ID</span>
+        <span class="material-icons">
+          {{
+            (sortOrder$ | async)?.asc
+              | sortOrderIndicator: "id" : (sortOrder$ | async)?.key
+          }}</span
+        >
+      </div>
+    </th>
+    <th (click)="onSortClick('first_name')">
+      <div>
+        <span>First Name</span>
+        <span class="material-icons">
+          {{
+            (sortOrder$ | async)?.asc
+              | sortOrderIndicator: "first_name" : (sortOrder$ | async)?.key
+          }}
+        </span>
+      </div>
+    </th>
+    <th (click)="onSortClick('last_name')">
+      <div>
+        <span>Last Name</span>
+        <span class="material-icons">
+          {{
+            (sortOrder$ | async)?.asc
+              | sortOrderIndicator: "last_name" : (sortOrder$ | async)?.key
+          }}
+        </span>
+      </div>
+    </th>
+    <th (click)="onSortClick('email')">
+      <div>
+        <span>Email</span>
+        <span class="material-icons">
+          {{
+            (sortOrder$ | async)?.asc
+              | sortOrderIndicator: "email" : (sortOrder$ | async)?.key
+          }}
+        </span>
+      </div>
+    </th>
+  </thead>
+  <tbody>
+  @for(user of userList$ | async; track user.id) {
+    <tr>
+      <td>{{ user?.id }}</td>
+      <td>{{ user?.first_name }}</td>
+      <td>{{ user?.last_name }}</td>
+      <td>{{ user?.email }}</td>
+    </tr>
+  }
+  </tbody>
+</table>
