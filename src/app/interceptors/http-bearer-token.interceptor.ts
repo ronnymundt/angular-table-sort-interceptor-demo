@@ -14,6 +14,7 @@ export const httpBearerTokenInterceptor: HttpInterceptorFn = (
   const clonedRequest = request.clone({
     setHeaders: {
       Authorization: `Bearer ${demoBearerToken}`,
+      "x-api-key": "reqres-free-v1"
     },
   });
   return next(clonedRequest);
